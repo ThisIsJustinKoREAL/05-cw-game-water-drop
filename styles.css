@@ -22,6 +22,7 @@ Fonts:
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body {
@@ -29,15 +30,15 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    background-color: #2E9DF7;
+    font-family: Proxima Nova, Avenir;
 }
 
 .game-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 8px;
 }
 
 .score-panel {
@@ -46,7 +47,7 @@ body {
     align-items: center;
     width: 800px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #FFC907;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -65,12 +66,19 @@ body {
     border-radius: 8px;
     position: relative;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 
-#start-btn {
+
+.button-group {
+    display: flex;
+    gap: 8px;
+}
+
+#start-btn,
+#reset-btn {
     padding: 8px 16px;
-    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
@@ -78,8 +86,20 @@ body {
     font-size: 16px;
 }
 
+#start-btn {
+    background-color: #8BD1CB;
+}
+
 #start-btn:hover {
-    background-color: #45a049;
+    background-color: #4FCB53;
+}
+
+#reset-btn {
+    background-color: #F16061;
+}
+
+#reset-btn:hover {
+    background-color: #F5402C;
 }
 
 .score {
@@ -106,21 +126,68 @@ body {
     transform: scale(1.1);  /* Slight grow effect on hover */
 }
 
-.bad-drop {
+.confetti-piece {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 10px;
+    height: 16px;
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    transform: translateX(-50%);
+    animation: confettiFall 2.4s ease-out forwards;
+}
+
+.bad-drop {position: absolute;
+    width: 60px;  /* increased from 40px */
+    height: 60px; /* increased from 40px */
+    border-radius: 50%;
+    animation: dropFall linear forwards;
+    transform-origin: center;
+    cursor: pointer;
+    padding: 15px;  /* Add padding for larger click area */
+    margin: -15px;  /* Offset padding to maintain visual size */
+    transition: transform 0.1s ease;  /* Smooth hover effect */
     background-color: #ff4444;
 }
 
 .game-title {
-    color: #131313;
-    font-size: 48px;
-    margin-top: 0;
-    margin-bottom: 5px;  /* reduced from 20px */
+    color: white;
+    font-size: 75px;
+    margin-top: 5px;
+    margin-bottom: 1px;  /* reduced from 20px */
     text-align: center;
 }
 
+.brand-image {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin-bottom: 0;
+    vertical-align: middle;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+.brand-name {
+    background: white;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    display: inline-flex;
+    align-items: center;
+}
+
 .game-tagline {
-    color: #666;
-    font-size: 18px;
+    color: white;
+    font-size: 40px;
+    margin-top: 10px;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -131,6 +198,20 @@ body {
     }
     to {
         transform: translateY(600px);
+    }
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(-50% + var(--x-offset, 0px))) translateY(620px) rotate(var(--rotation, 720deg));
+        opacity: 0;
     }
 }
 

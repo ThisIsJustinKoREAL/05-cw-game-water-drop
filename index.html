@@ -9,11 +9,15 @@
 <body>
     <div class="game-wrapper">
         <h1 class="game-title">Water Drop</h1>
+        <p class="brand-name"><img  class = "brand-image" src="img/water-can-transparent.png" alt="charity: water barnd logo"> charity: water</p>
         <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
         <div class="score-panel">
             <div class="score">Score: <span id="score">0</span></div>
             <div class="timer">Time: <span id="time">30</span>s</div>
-            <button id="start-btn">Start Game</button>
+            <div class="button-group">
+                <button id="reset-btn" type="button">Reset</button>
+                <button id="start-btn" type="button">Start Game</button>
+            </div>
         </div>
         
         <div id="game-container">
